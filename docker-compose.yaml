@@ -1,0 +1,33 @@
+version: "3.9"
+
+services:
+    app:
+        container_name: app
+        image: app
+        restart: always
+        build:
+            context: .
+            dockerfile: Dockerfile
+            target: base
+        ports:
+            - "3000:3000"
+        depends_on:
+            - school-db
+    school-db:
+        container_name: school-db
+        image: mysql:latest
+        environment:
+            MYSQL_DATABASE: 'school-db'
+            MYSQL_ROOT_PASSWORD: '123456'
+        ports:
+            - '3306:3306'
+        expose:
+            - '3306'
+        volumes:
+            - school-db:/var/lib/mysql
+
+volumes:
+    school-db:
+
+networks:
+    communication:
