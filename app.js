@@ -23,6 +23,8 @@ app.get("/", (req, res) => {
     connection.end()
 });
 
+require("./routes/Persona.routes.js")(app);
+
 app.listen(port, () => {
     console.log(`Server running at http://${hostname}:${port}/`);
 });
