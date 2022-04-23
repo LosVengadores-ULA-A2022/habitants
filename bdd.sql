@@ -22,7 +22,7 @@ USE `school-db` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `school-db`.`CompañiaGas` (
   `nombe` INT NULL DEFAULT NULL,
-  `idCompañia` INT NOT NULL AUTO_INCREMENT,
+  `idCompañia` INT NOT NULL AUTO_INCREMENT UNIQUE,
   PRIMARY KEY (`idCompañia`),
   UNIQUE INDEX `CompañiaGas_idCompañia_uindex` (`idCompañia` ASC) VISIBLE)
 ENGINE = InnoDB
@@ -33,7 +33,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- Table `school-db`.`CilindroDeCompañia`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `school-db`.`CilindroDeCompañia` (
-  `idCilindroDeCompañia` INT NOT NULL,
+  `idCilindroDeCompañia` INT NOT NULL AUTO_INCREMENT UNIQUE,
   `nombre` VARCHAR(45) NULL DEFAULT NULL,
   `idCompañia` INT NULL DEFAULT NULL,
   PRIMARY KEY (`idCilindroDeCompañia`),
@@ -49,7 +49,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- Table `school-db`.`GrupoFamiliar`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `school-db`.`GrupoFamiliar` (
-  `idGrupoFamiliar` INT NOT NULL,
+  `idGrupoFamiliar` INT NOT NULL AUTO_INCREMENT UNIQUE,
   `idRepresentante` INT NULL DEFAULT NULL,
   `idIntegranteGrupoFamiliar` INT NULL DEFAULT NULL,
   `relacion` VARCHAR(255) NULL DEFAULT NULL,
@@ -70,7 +70,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- Table `school-db`.`Persona`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `school-db`.`Persona` (
-  `idPersona` INT NOT NULL,
+  `idPersona` INT NOT NULL AUTO_INCREMENT UNIQUE,
   `cedula` VARCHAR(20) NULL DEFAULT NULL,
   `fecha_de_nacimiento` DATETIME NULL DEFAULT NULL,
   `nombre` VARCHAR(80) NULL DEFAULT NULL,
@@ -95,7 +95,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- Table `school-db`.`Representante`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `school-db`.`Representante` (
-  `idRepresentante` INT NOT NULL,
+  `idRepresentante` INT NOT NULL AUTO_INCREMENT UNIQUE,
   `Persona_idPersona` INT NOT NULL,
   PRIMARY KEY (`idRepresentante`),
   INDEX `fk_Representante_Persona1_idx` (`Persona_idPersona` ASC) VISIBLE,
@@ -110,7 +110,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- Table `school-db`.`TipoDeInmueble`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `school-db`.`TipoDeInmueble` (
-  `idTipoDeInmueble` INT NOT NULL,
+  `idTipoDeInmueble` INT NOT NULL AUTO_INCREMENT UNIQUE,
   `tipo` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`idTipoDeInmueble`))
 ENGINE = InnoDB
@@ -121,7 +121,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- Table `school-db`.`Ubicacion`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `school-db`.`Ubicacion` (
-  `idUbicacion` INT NOT NULL,
+  `idUbicacion` INT NOT NULL AUTO_INCREMENT UNIQUE,
   `direccion` VARCHAR(80) NULL DEFAULT NULL,
   PRIMARY KEY (`idUbicacion`))
 ENGINE = InnoDB
@@ -132,7 +132,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- Table `school-db`.`Inmueble`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `school-db`.`Inmueble` (
-  `idInmueble` INT NOT NULL,
+  `idInmueble` INT NOT NULL AUTO_INCREMENT UNIQUE,
   `numero` INT NULL DEFAULT NULL,
   `TipoDeInmueble_idTipoDeInmueble` INT NULL DEFAULT NULL,
   `Ubicacion_idUbicacion` INT NULL DEFAULT NULL,
@@ -158,7 +158,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- Table `school-db`.`CilindroDeInmueble`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `school-db`.`CilindroDeInmueble` (
-  `idCilindroDeInmueble` INT NOT NULL,
+  `idCilindroDeInmueble` INT NOT NULL AUTO_INCREMENT UNIQUE,
   `Inmueble_idInmueble` INT NULL DEFAULT NULL,
   `CilindroDeCompañia_idCilindroDeCompañia` INT NULL DEFAULT NULL,
   PRIMARY KEY (`idCilindroDeInmueble`),
@@ -178,7 +178,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- Table `school-db`.`Vehiculo`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `school-db`.`Vehiculo` (
-  `idVehiculo` INT NOT NULL,
+  `idVehiculo` INT NOT NULL AUTO_INCREMENT UNIQUE,
   `placa` VARCHAR(20) NULL DEFAULT NULL,
   `color` VARCHAR(20) NULL DEFAULT NULL,
   PRIMARY KEY (`idVehiculo`))
@@ -190,7 +190,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- Table `school-db`.`VehiculoDeInmueble`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `school-db`.`VehiculoDeInmueble` (
-  `idVehiculoDeInmueble` INT NOT NULL,
+  `idVehiculoDeInmueble` INT NOT NULL AUTO_INCREMENT UNIQUE,
   `Inmueble_idInmueble` INT NULL DEFAULT NULL,
   `Vehiculo_idVehiculo` INT NULL DEFAULT NULL,
   PRIMARY KEY (`idVehiculoDeInmueble`),
