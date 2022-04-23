@@ -1,6 +1,6 @@
 const TipoDeInmueble = require("../models/TipoDeInmueble.model.js");
 
-// Crea y guarda un nuevo tipo de inmueble
+// Crea y guarda un tipo de inmueble
 exports.create = (req, res) => {
   // Valida la petición
   if (!req.body) {
@@ -35,7 +35,7 @@ exports.create = (req, res) => {
   })
 };
 
-// Obtiene todos los tipos de inmueble de la base de datos
+// Obtiene los tipos de inmueble de la base de datos
 exports.findAll = (req, res) => {
   const title = req.query.title;
   TipoDeInmueble.getAll(title, (err, data) => {
@@ -48,7 +48,7 @@ exports.findAll = (req, res) => {
   });
 };
 
-// Obtiene a una solo tipo de inmueble por su id
+// Obtiene el tipo de inmueble por su id
 exports.findOne = (req, res) => {
   TipoDeInmueble.findById(req.params.id, (err, data) => {
     if (err) {
