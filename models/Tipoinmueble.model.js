@@ -1,6 +1,6 @@
 const sql = require("./db.js");
 
-// constructor
+// Constructor
 const TipoDeInmueble = function(tipodeinmueble) {
   this.idTipoDeInmueble = tipodeinmueble.idTipoDeInmueble;
   this.tipo = tipodeinmueble.tipo;
