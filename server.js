@@ -15,6 +15,7 @@ app.get("/", (req, res) => {
 
 require("./routes/Persona.routes.js")(app);
 require("./routes/Ubicacion.routes.js")(app);
+require("./routes/TipoDeInmueble.routes.js")(app);
 
 app.listen(port, () => {
     console.log(`Servidor corriendo en http://${hostname}:${port}/`);
