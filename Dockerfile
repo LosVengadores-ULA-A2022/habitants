@@ -1,5 +1,7 @@
 FROM node:alpine as base
 
+RUN apk add bash
+
 WORKDIR /app
 
 COPY package.json yarn.lock ./
