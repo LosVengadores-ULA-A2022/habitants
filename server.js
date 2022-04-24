@@ -13,10 +13,11 @@ app.get("/", (req, res) => {
   res.json({ message: "Bienvenido a la aplicación de los vengadores." });
 });
 
-require("./routes/Persona.routes.js")(app);
 require("./routes/Ubicacion.routes.js")(app);
 require("./routes/TipoDeInmueble.routes.js")(app);
 
 app.listen(port, () => {
     console.log(`Servidor corriendo en http://${hostname}:${port}/`);
 });
+
+module.exports = app;

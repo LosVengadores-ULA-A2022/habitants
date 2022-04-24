@@ -46,10 +46,10 @@ Ubicacion.findById = (id, result) => {
   });
 };
 
-Ubicacion.getAll = (title, result) => {
+Ubicacion.getAll = (direccion, result) => {
   let query = "SELECT * FROM Ubicacion";
-  if (title) {
-    query += ` WHERE title LIKE '%${title}%'`;
+  if (direccion) {
+    query += ` WHERE direccion LIKE '%${direccion}%'`;
   }
   sql.query(query, (err, res) => {
     if (err) {

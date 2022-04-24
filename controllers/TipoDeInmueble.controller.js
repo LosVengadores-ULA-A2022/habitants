@@ -5,7 +5,7 @@ exports.create = (req, res) => {
   // Valida la petición
   if (!req.body) {
     res.status(400).send({
-      message: "Content can not be empty!"
+      message: "El contenido no puede estar vacio!"
     });
   }
 
@@ -13,7 +13,7 @@ exports.create = (req, res) => {
     if (err)
       res.status(500).send({
         message:
-          err.message || "Some error occurred while counting the TipoDeInmueble."
+          err.message || "Ocurrio un error contando las tipos de inmuebles."
       });
     else {
       // Crea un tipo de inmueble
@@ -27,7 +27,7 @@ exports.create = (req, res) => {
         if (err)
           res.status(500).send({
             message:
-              err.message || "Some error occurred while creating the tipo de inmueble."
+              err.message || "Ocurrio un error creando tipo de inmueble."
           });
         else res.send(data);
       });
@@ -42,7 +42,7 @@ exports.findAll = (req, res) => {
     if (err)
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving tipo de inmueble."
+          err.message || "Ocurrio error buscando tipo de inmueble"
       });
     else res.send(data);
   });
@@ -54,11 +54,11 @@ exports.findOne = (req, res) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found TipoDeInmueble with id ${req.params.id}.`
+          message: `No se encontro tipo de inmueble con id ${req.params.id}.`
         });
       } else {
         res.status(500).send({
-          message: "Error retrieving TipoDeInmueble with id " + req.params.id
+          message: "Error buscando tipo de inmueble con id " + req.params.id
         });
       }
     } else res.send(data);
@@ -70,11 +70,9 @@ exports.update = (req, res) => {
   // Validate Request
   if (!req.body) {
     res.status(400).send({
-      message: "Content can not be empty!"
+      message: "El contenido no puede estar vacio!"
     });
   }
-
-  console.log(req);
 
   TipoDeInmueble.updateById(
     req.params.id,
@@ -83,11 +81,11 @@ exports.update = (req, res) => {
       if (err) {
         if (err.kind === "not_found") {
           res.status(404).send({
-            message: `Not found TipoDeInmueble with id ${req.params.id}.`
+            message: `No se encontro tipo de inmueble con id ${req.params.id}.`
           });
         } else {
           res.status(500).send({
-            message: "Error updating tipodeinmueble with id " + req.params.id
+            message: "Error actualizando tipo de inmueble con id " + req.params.id
           });
         }
       } else res.send(data);
@@ -101,13 +99,13 @@ exports.delete = (req, res) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found TipoDeInmueble with id ${req.params.id}.`
+          message: `No se encontro tipo de inmueble con id ${req.params.id}.`
         });
       } else {
         res.status(500).send({
-          message: "Could not delete TipoDeInmueble with id " + req.params.id
+          message: "No se pudo borrar tipo de inmueble con id " + req.params.id
         });
       }
-    } else res.send({ message: `TipoDeInmueble was deleted successfully!` });
+    } else res.send({ message: `TipoDeInmueble se borro con exito!` });
   });
 };

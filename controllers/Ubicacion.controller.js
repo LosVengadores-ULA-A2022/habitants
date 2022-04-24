@@ -5,7 +5,7 @@ exports.create = (req, res) => {
   // Valida la petición
   if (!req.body) {
     res.status(400).send({
-      message: "Content can not be empty!"
+      message: "El contenido no puede estar vacio!"
     });
   }
 
@@ -13,7 +13,7 @@ exports.create = (req, res) => {
     if (err)
       res.status(500).send({
         message:
-          err.message || "Some error occurred while counting the Ubicacion."
+          err.message || "Ocurrio un error contando las ubicaciones."
       });
     else {
       // Crea una ubicacion
@@ -27,7 +27,7 @@ exports.create = (req, res) => {
         if (err)
           res.status(500).send({
             message:
-              err.message || "Some error occurred while creating the Ubicacion."
+              err.message || "Ocurrio un error creando la ubicacion."
           });
         else res.send(data);
       });
@@ -37,12 +37,12 @@ exports.create = (req, res) => {
 
 // Obtiene todas las ubicaciones de la base de datos
 exports.findAll = (req, res) => {
-  const title = req.query.title;
-  Ubicacion.getAll(title, (err, data) => {
+  const direccion = req.query.direccion;
+  Ubicacion.getAll(direccion, (err, data) => {
     if (err)
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving ubicacions."
+          err.message || "Ocurrio un error buscando la ubicacion."
       });
     else res.send(data);
   });
@@ -54,11 +54,11 @@ exports.findOne = (req, res) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Ubicacion with id ${req.params.id}.`
+          message: `No se encontro ubicacion con el id ${req.params.id}.`
         });
       } else {
         res.status(500).send({
-          message: "Error retrieving Ubicacion with id " + req.params.id
+          message: "Error buscando ubicacion con id " + req.params.id
         });
       }
     } else res.send(data);
@@ -70,11 +70,9 @@ exports.update = (req, res) => {
   // Validate Request
   if (!req.body) {
     res.status(400).send({
-      message: "Content can not be empty!"
+      message: "El contenido no puede estar vacio!"
     });
   }
-
-  console.log(req);
 
   Ubicacion.updateById(
     req.params.id,
@@ -83,11 +81,11 @@ exports.update = (req, res) => {
       if (err) {
         if (err.kind === "not_found") {
           res.status(404).send({
-            message: `Not found Ubicacion with id ${req.params.id}.`
+            message: `No se encontro ubicacion con el id ${req.params.id}.`
           });
         } else {
           res.status(500).send({
-            message: "Error updating ubicacion with id " + req.params.id
+            message: "Error actualizando ubicacion con id " + req.params.id
           });
         }
       } else res.send(data);
@@ -101,13 +99,13 @@ exports.delete = (req, res) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Ubicacion with id ${req.params.id}.`
+          message: `No se encontro ubicacion con el id ${req.params.id}.`
         });
       } else {
         res.status(500).send({
-          message: "Could not delete Ubicacion with id " + req.params.id
+          message: "No se pudo borrar la ubicacion con id " + req.params.id
         });
       }
-    } else res.send({ message: `Ubicacion was deleted successfully!` });
+    } else res.send({ message: `Ubicacion se borro exitosamente!` });
   });
 };
