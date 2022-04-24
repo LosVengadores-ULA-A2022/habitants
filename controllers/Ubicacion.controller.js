@@ -9,30 +9,20 @@ exports.create = (req, res) => {
     });
   }
 
-  Ubicacion.getCount((err, count) => {
+  // Crea una ubicacion
+  const ubicacion = new Ubicacion({
+    direccion: req.body.direccion,
+  });
+
+  // Guarda la ubicacion en la base de datos
+  Ubicacion.create(ubicacion, (err, data) => {
     if (err)
       res.status(500).send({
         message:
-          err.message || "Ocurrio un error contando las ubicaciones."
+          err.message || "Ocurrio un error creando la ubicacion."
       });
-    else {
-      // Crea una ubicacion
-      const ubicacion = new Ubicacion({
-        idUbicacion: count + 1,
-        direccion: req.body.direccion,
-      });
-
-      // Guarda la ubicacion en la base de datos
-      Ubicacion.create(ubicacion, (err, data) => {
-        if (err)
-          res.status(500).send({
-            message:
-              err.message || "Ocurrio un error creando la ubicacion."
-          });
-        else res.send(data);
-      });
-    }
-  })
+    else res.send(data);
+  });
 };
 
 // Obtiene todas las ubicaciones de la base de datos

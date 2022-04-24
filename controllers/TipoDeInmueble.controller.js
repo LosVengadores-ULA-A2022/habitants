@@ -9,30 +9,20 @@ exports.create = (req, res) => {
     });
   }
 
-  TipoDeInmueble.getCount((err, count) => {
+  // Crea un tipo de inmueble
+  const tipodeinmueble = new TipoDeInmueble({
+    tipo: req.body.tipo,
+  });
+
+  // Guarda el tipo de inmueble en la base de datos
+  TipoDeInmueble.create(tipodeinmueble, (err, data) => {
     if (err)
       res.status(500).send({
         message:
-          err.message || "Ocurrio un error contando las tipos de inmuebles."
+          err.message || "Ocurrio un error creando tipo de inmueble."
       });
-    else {
-      // Crea un tipo de inmueble
-      const tipodeinmueble = new TipoDeInmueble({
-        idTipoDeInmueble: count + 1,
-        tipo: req.body.tipo,
-      });
-
-      // Guarda el tipo de inmueble en la base de datos
-      TipoDeInmueble.create(tipodeinmueble, (err, data) => {
-        if (err)
-          res.status(500).send({
-            message:
-              err.message || "Ocurrio un error creando tipo de inmueble."
-          });
-        else res.send(data);
-      });
-    }
-  })
+    else res.send(data);
+  });
 };
 
 // Obtiene los tipos de inmueble de la base de datos

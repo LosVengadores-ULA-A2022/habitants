@@ -2,19 +2,7 @@ const sql = require("./db.js");
 
 // constructor
 const Ubicacion = function(ubicacion) {
-  this.idUbicacion = ubicacion.idUbicacion;
   this.direccion = ubicacion.direccion;
-};
-
-Ubicacion.getCount = (result) => {
-  sql.query("SELECT COUNT(*) as total FROM Ubicacion", (err, res) => {
-    if (err) {
-      console.log("error: ", err);
-      result(err, null);
-      return;
-    }
-    result(null, res[0].total);
-  });
 };
 
 Ubicacion.create = (newUbicacion, result) => {
