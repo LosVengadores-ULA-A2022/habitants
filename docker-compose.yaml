@@ -15,7 +15,7 @@ services:
             - "3000:3000"
         depends_on:
             - school-db
-        command: ["./wait-for-it.sh", "school-db:3306", "--", "node", "./server.js"]
+        command: ["./wait-for-it.sh", "school-db:3306", "--", "node", "server.js"]
     school-db:
         container_name: school-db
         image: mysql:latest
