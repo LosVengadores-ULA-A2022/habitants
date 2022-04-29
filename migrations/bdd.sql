@@ -21,7 +21,7 @@ USE `school-db` ;
 -- Table `school-db`.`CompañiaGas`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `school-db`.`CompañiaGas` (
-  `nombe` INT NULL DEFAULT NULL,
+  `nombre` INT NULL DEFAULT NULL,
   `idCompañia` INT NOT NULL AUTO_INCREMENT UNIQUE,
   PRIMARY KEY (`idCompañia`),
   UNIQUE INDEX `CompañiaGas_idCompañia_uindex` (`idCompañia` ASC) VISIBLE)
@@ -111,7 +111,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `school-db`.`TipoDeInmueble` (
   `idTipoDeInmueble` INT NOT NULL AUTO_INCREMENT UNIQUE,
-  `tipo` VARCHAR(45) NULL DEFAULT NULL,
+  `tipo` VARCHAR(45) NULL DEFAULT NULL UNIQUE,
   PRIMARY KEY (`idTipoDeInmueble`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
@@ -122,7 +122,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `school-db`.`Ubicacion` (
   `idUbicacion` INT NOT NULL AUTO_INCREMENT UNIQUE,
-  `direccion` VARCHAR(80) NULL DEFAULT NULL,
+  `direccion` VARCHAR(80) NULL DEFAULT NULL UNIQUE,
   PRIMARY KEY (`idUbicacion`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
